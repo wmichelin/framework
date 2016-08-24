@@ -5,6 +5,10 @@
         "monolog/monolog":           "dev-master",
         "jtreminio/test-extensions": "dev-master"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+      "psr-4": {
+        "App\\": "src/"
+      }
+    }
 }
-

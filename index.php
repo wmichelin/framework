@@ -1,8 +1,9 @@
 <?php
 
-require_once('src/Application/Application.php');
+require_once __DIR__.'/vendor/autoload.php';
 
-use Application\Application;
+use App\Application\Application;
+use App\Router\Router;
 
-$app = new Application();
-$app->start();
+$app = new Application(new Router());
+echo $app->start();
