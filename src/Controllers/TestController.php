@@ -6,6 +6,13 @@ use App\Views\Providers\TemplateEngineProvider;
 
 class TestController
 {
+    private $tpl;
+
+    public function __construct()
+    {
+        $this->tpl = TemplateEngineProvider::getInstance();
+    }
+
     public function test()
     {
         return 'hello from controller';
@@ -13,9 +20,7 @@ class TestController
 
     public function index($parameter = '')
     {
-        $templateEngine = TemplateEngineProvider::getInstance();
-
-        return $templateEngine->render('index');
+        return $this->tpl->render('index');
     }
 
     public function testWorld()
