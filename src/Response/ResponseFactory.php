@@ -2,6 +2,8 @@
 
 namespace App\Response;
 
+use \Exception;
+
 class ResponseFactory
 {
     public static function createErrorResponse()
@@ -9,9 +11,15 @@ class ResponseFactory
         return new Response(Response::ERROR_CODE, Response::ERROR_MESSAGE);
     }
 
-    public static function createSuccessResponse($content)
+    public static function createResponse($content)
     {
-        return new Response(Response::SUCCESS_CODE, $content);
+        try {
+            $response = new Response(Response::SUCCESS_CODE, $content);
+        } catch (Exception $e) {
+            $response = self::createErrorResponse;
+        }
+
+        return $response;
     }
 
     public static function createNotFoundResponse()

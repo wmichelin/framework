@@ -42,11 +42,7 @@ class Router
         if ($this->routes->hasMatch($uri)) {
             try {
                 $route = $this->routes->getRoute($this->request->getURI());
-
-                $controllerObject = $route->getControllerObject();
-                $methodName = $route->getMethodName();
-
-                $this->response = ResponseFactory::createSuccessResponse($controllerObject->{$methodName}());
+                $this->response = ResponseFactory::createResponse($route);
             } catch (Exception $e) {
                 $this->response = ResponseFactory::createErrorResponse();
             }
