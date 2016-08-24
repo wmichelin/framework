@@ -4,11 +4,30 @@ namespace App\Router;
 
 class Route
 {
+    /**
+     * @var string
+     */
     private $uri;
+
+    /**
+     * @var string
+     */
     private $handler;
+
+    /**
+     * @var string
+     */
     private $handlerClassName;
+
+    /**
+     * @var string
+     */
     private $handlerMethodName;
 
+    /**
+     * @param string $uri
+     * @param string $handler
+     */
     public function __construct($uri, $handler)
     {
         $this->uri = $uri;
@@ -17,6 +36,9 @@ class Route
         $this->handlerMethodName = explode('::', $handler)[1];
     }
 
+    /**
+     * @return array
+     */
     public function getSlugIndices()
     {
         $indexArray = [];
@@ -29,22 +51,33 @@ class Route
         return $indexArray;
     }
 
+    /**
+     * @return string
+     */
     public function getURI()
     {
         return $this->uri;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getControllerObject()
     {
         return new $this->handlerClassName();
     }
 
+    /**
+     * @return mixed
+     */
     public function getControllerName()
     {
         return $this->handlerClassName;
     }
 
+    /**
+     * @return mixed
+     */
     public function getMethodName()
     {
         return $this->handlerMethodName;
