@@ -1,5 +1,7 @@
 # Hey
 
+![Travis Badge](https://travis-ci.org/wmichelin/framework.svg?branch=master)
+
 `composer install`
 
 `cd public`
