@@ -16,7 +16,7 @@ class ResponseFactory
         try {
             $response = new Response(Response::SUCCESS_CODE, $content);
         } catch (Exception $e) {
-            $response = self::createErrorResponse;
+            $response = self::createErrorResponse();
         }
 
         return $response;
