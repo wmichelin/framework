@@ -25,19 +25,6 @@ class RouteCollection
             }
         }
 
-        $routesWithParams = array_filter($this->routes, function ($route) {
-            return $route->hasParameters();
-        });
-
-        $baseURI = explode('/', $uri)[0];
-        $parameterValue = explode('/', $uri)[1];
-
-        foreach ($routesWithParams as $route) {
-            if ($baseURI === $route->getBaseURI()) {
-                return $route;
-            }
-        }
-
         return false;
     }
 }
