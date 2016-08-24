@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use \Exception;
 
+use App\Views\Providers\TemplateEngineProvider;
+
 class TestController
 {
   public function test()
@@ -12,7 +14,8 @@ class TestController
 
   public function index($parameter = "")
   {
-    return "index page " . $parameter;
+    $templateEngine = TemplateEngineProvider::getInstance();
+    return $templateEngine->render("index");
   }
 
   public function testWorld()
