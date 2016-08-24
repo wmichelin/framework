@@ -10,17 +10,9 @@ class Route
     private $handler;
     private $handlerClassName;
     private $handlerMethodName;
-    private $hasParameters = false;
 
     public function __construct($uri, $handler)
     {
-        if (preg_match('/{(.*?)}/', $uri, $matches) > 0) {
-            $this->hasParameters = true;
-            $this->uri = $uri;
-            $this->baseURI = explode('/', $uri)[0];
-            $this->parameter = explode('/', $uri)[1];
-        }
-
         $this->uri = $uri;
         $this->handler = $handler;
         $this->handlerClassName = explode('::', $handler)[0];
@@ -47,8 +39,4 @@ class Route
         return $this->handlerMethodName;
     }
 
-    public function hasParameters()
-    {
-        return $this->hasParameters;
-    }
 }

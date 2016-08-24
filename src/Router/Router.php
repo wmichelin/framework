@@ -42,22 +42,12 @@ class Router
         $parameter = false;
         if ($this->routes->hasMatch($uri)) {
             try {
-                $route = $this->routes
-                    ->getRoute($this->request->getURI());
-
-                if ($route->hasParameters()) {
-                    $uri = $this->request->getBaseURI();
-                    $parameter = $this->request->getParameterValue();
-                }
+                $route = $this->routes->getRoute($this->request->getURI());
 
                 $controllerObject = $route->getControllerObject();
                 $methodName = $route->getMethodName();
 
-                if ($parameter) {
-                    $this->response = ResponseFactory::createSuccessResponse($controllerObject->{$methodName}($parameter));
-                } else {
-                    $this->response = ResponseFactory::createSuccessResponse($controllerObject->{$methodName}());
-                }
+                $this->response = ResponseFactory::createSuccessResponse($controllerObject->{$methodName}());
             } catch (Exception $e) {
                 $this->response = ResponseFactory::createErrorResponse();
             }
