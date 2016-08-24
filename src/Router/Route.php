@@ -5,8 +5,6 @@ namespace App\Router;
 class Route
 {
     private $uri;
-    private $baseURI;
-    private $parameter;
     private $handler;
     private $handlerClassName;
     private $handlerMethodName;
@@ -24,11 +22,6 @@ class Route
         return $this->uri;
     }
 
-    public function getBaseURI()
-    {
-        return $this->baseURI;
-    }
-
     public function getControllerObject()
     {
         return new $this->handlerClassName();
@@ -38,5 +31,4 @@ class Route
     {
         return $this->handlerMethodName;
     }
-
 }
