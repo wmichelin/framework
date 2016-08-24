@@ -6,4 +6,4 @@ use App\Application\Application;
 use App\Router\Router;
 
 $app = new Application(new Router());
-echo $app->start();
+$app->start();
