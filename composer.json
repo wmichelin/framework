@@ -4,7 +4,8 @@
         "doctrine/dbal":             "2.2.*",
         "monolog/monolog":           "dev-master",
         "jtreminio/test-extensions": "dev-master",
-        "mustache/mustache": "^2.11"
+        "mustache/mustache": "^2.11",
+        "phpunit/phpunit": "^5.5"
     },
     "minimum-stability": "dev",
     "autoload": {
