@@ -21,8 +21,8 @@ class Router
     {
         $this->routes = new RouteCollection([
             new Route('', "App\Controllers\TestController::index"),
-            new Route('hello', "App\Controllers\TestController::test"),
-            new Route('hello/index', "App\Controllers\TestController::testWorld"),
+            new Route('test', "App\Controllers\TestController::test"),
+            new Route('test/world', "App\Controllers\TestController::testWorld"),
         ]);
 
         return $this;
