@@ -8,18 +8,16 @@ use App\Router\Router;
 
 class Application
 {
+    private $router;
 
-  private $router;
+    public function __construct(Router $router)
+    {
+        $this->router = $router;
+    }
 
-  public function __construct(Router $router)
-  {
-    $this->router = $router;
-  }
-
-  public function start()
-  {
-    $this->request = RequestFactory::createFromRequest();
-    $this->router->handle($this->request);
-  }
-
+    public function start()
+    {
+        $this->request = RequestFactory::createFromRequest();
+        $this->router->handle($this->request);
+    }
 }
