@@ -32,8 +32,8 @@ class Router
     public function handle(Request $req)
     {
         $this->setRequest($req)
-      ->setResponse()
-      ->respond();
+            ->setResponse()
+            ->respond();
     }
 
     private function setResponse()
@@ -43,7 +43,7 @@ class Router
         if ($this->routes->hasMatch($uri)) {
             try {
                 $route = $this->routes
-          ->getRoute($this->request->getURI());
+                    ->getRoute($this->request->getURI());
 
                 if ($route->hasParameters()) {
                     $uri = $this->request->getBaseURI();
