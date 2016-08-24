@@ -8,16 +8,31 @@ use App\Router\Router;
 
 class Application
 {
-    private $router;
+    /**
+     * @var Router
+     */
+    protected $router;
 
-    public function __construct(Router $router)
+    /**
+     * @var Request
+     */
+    protected $request;
+
+    /**
+     * @param Router $router
+     * @param Request $request
+     */
+    public function __construct(Router $router, Request $request)
     {
         $this->router = $router;
+        $this->request = $request;
     }
 
+    /**
+     * Start the app
+     */
     public function start()
     {
-        $this->request = (new RequestFactory())->createFromRequest();
         $this->router->handle($this->request);
     }
 }

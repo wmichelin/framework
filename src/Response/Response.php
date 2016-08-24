@@ -14,12 +14,19 @@ class Response
     private $responseCode;
     private $content;
 
+    /**
+     * @param int $code
+     * @param string $content
+     */
     public function __construct($code = self::ERROR_CODE, $content = self::ERROR_MESSAGE)
     {
         $this->responseCode = $code;
         $this->content = $content;
     }
 
+    /**
+     * @return Response
+     */
     public function respond()
     {
         http_response_code($this->responseCode);

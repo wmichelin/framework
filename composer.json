@@ -2,7 +2,7 @@
     "require": {
         "symfony/validator":         "2.1.*",
         "doctrine/dbal":             "2.2.*",
-        "monolog/monolog":           "dev-master",
+        "monolog/monolog":           "1.21.*",
         "jtreminio/test-extensions": "dev-master",
         "mustache/mustache": "^2.11",
         "phpunit/phpunit": "^5.5"
