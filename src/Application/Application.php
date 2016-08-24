@@ -17,7 +17,7 @@ class Application
 
     public function start()
     {
-        $this->request = RequestFactory::createFromRequest();
+        $this->request = (new RequestFactory())->createFromRequest();
         $this->router->handle($this->request);
     }
 }

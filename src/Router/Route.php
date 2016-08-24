@@ -17,14 +17,32 @@ class Route
         $this->handlerMethodName = explode('::', $handler)[1];
     }
 
+    public function getSlugIndices()
+    {
+        $indexArray = [];
+        foreach (explode('/', $this->uri) as $key => $part) {
+            if (preg_match('/{(\w+)}/', $part)) {
+                array_push($indexArray, $key);
+            }
+        }
+
+        return $indexArray;
+    }
+
     public function getURI()
     {
         return $this->uri;
     }
 
+
     public function getControllerObject()
     {
         return new $this->handlerClassName();
+    }
+
+    public function getControllerName()
+    {
+        return $this->handlerClassName;
     }
 
     public function getMethodName()

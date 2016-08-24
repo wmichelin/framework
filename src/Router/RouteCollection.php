@@ -27,4 +27,9 @@ class RouteCollection
 
         return false;
     }
+
+    public function toArray()
+    {
+        return $this->routes;
+    }
 }

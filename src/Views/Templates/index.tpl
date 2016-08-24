@@ -1,3 +1,3 @@
 <div>
-  hello suh dude
+  hello suh dude {{foo}} {{bar}}
 </div>

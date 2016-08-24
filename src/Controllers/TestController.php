@@ -18,9 +18,12 @@ class TestController
         return 'hello from controller';
     }
 
-    public function index($parameter = '')
+    public function index($foo, $bar)
     {
-        return $this->tpl->render('index');
+        return $this->tpl->render('index', [
+            'foo' => $foo,
+            'bar' => $bar
+        ]);
     }
 
     public function testWorld()

@@ -9,8 +9,8 @@ use Exception;
 class Router
 {
     private $routes;
+    private $request;
     private $response;
-    private $controller;
 
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Router
     private function registerRoutes()
     {
         $this->routes = new RouteCollection([
-            new Route('', "App\Controllers\TestController::index"),
+            new Route('test/{foo}/{bar}', "App\Controllers\TestController::index"),
             new Route('test', "App\Controllers\TestController::test"),
             new Route('test/world', "App\Controllers\TestController::testWorld"),
         ]);
@@ -37,45 +37,21 @@ class Router
 
     private function setResponse()
     {
-        $uri = $this->request->getURI();
-        $parameter = false;
-        if ($this->routes->hasMatch($uri)) {
-            try {
-                $route = $this->routes->getRoute($this->request->getURI());
-                $this->response = ResponseFactory::createResponse($route);
-            } catch (Exception $e) {
-                $this->response = ResponseFactory::createErrorResponse();
-            }
-        } else {
-            $this->response = ResponseFactory::createNotFoundResponse();
-        }
+        $this->response = (new ResponseFactory($this->request, $this->routes))
+            ->createFromRequest();
 
         return $this;
-    }
-
-    private function getControllerObject($controllerString)
-    {
-        $className = explode('::', $controllerString)[0];
-
-        return new $className();
-    }
-
-    private function getControllerAction($controllerString)
-    {
-        return $controllerString = explode('::', $controllerString)[1];
     }
 
     private function respond()
     {
         $this->response->respond();
-
         return $this;
     }
 
-    private function setRequest($req = false)
+    private function setRequest(Request $req)
     {
         $this->request = $req;
-
         return $this;
     }
 }
