@@ -30,4 +30,9 @@ class TestController
     {
         return 'hello test world';
     }
+
+    public function helloWorld()
+    {
+        return 'hello world';
+    }
 }
