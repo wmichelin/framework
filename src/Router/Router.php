@@ -22,6 +22,7 @@ class Router
   private function registerRoutes()
   {
     $this->routes = new RouteCollection([
+      new Route("", "App\Controllers\TestController::index"),
       new Route("hello/{index}", "App\Controllers\TestController::index"),
       new Route("hello", "App\Controllers\TestController::test"),
       new Route("hello/index", "App\Controllers\TestController::testWorld"),

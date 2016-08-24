@@ -10,7 +10,7 @@ class TestController
     return "hello from controller";
   }
 
-  public function index($parameter)
+  public function index($parameter = "")
   {
     return "index page " . $parameter;
   }
