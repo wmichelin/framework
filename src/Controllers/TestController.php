@@ -18,7 +18,12 @@ class TestController
         return 'hello from controller';
     }
 
-    public function index($foo, $bar)
+    public function index()
+    {
+        return "welcome";
+    }
+
+    public function fooBar($foo, $bar)
     {
         return $this->tpl->render('index', [
             'foo' => $foo,

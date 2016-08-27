@@ -20,9 +20,10 @@ class Router
     private function registerRoutes()
     {
         $this->routes = new RouteCollection([
-            new Route('test/{foo}/{bar}', "App\Controllers\TestController::index"),
+            new Route('{foo}/{bar}', "App\Controllers\TestController::fooBar"),
             new Route('test', "App\Controllers\TestController::test"),
             new Route('test/world', "App\Controllers\TestController::testWorld"),
+            new Route('', "App\Controllers\TestController::index")
         ]);
 
         return $this;
