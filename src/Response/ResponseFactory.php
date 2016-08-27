@@ -10,58 +10,50 @@ use \Exception;
 
 class ResponseFactory
 {
+	/**
+	 * @var Request
+	 */
     private $request;
+
+	/**
+	 * @var RouteCollection
+	 */
     private $routes;
+
+	/**
+	 * @var bool
+	 */
     private $matchingRoute = false;
 
+    /**
+     * @param Request $request
+     * @param RouteCollection $routes
+     */
     public function __construct(Request $request, RouteCollection $routes)
     {
         $this->request = $request;
         $this->routes = $routes;
     }
 
+    /**
+     * @return Response
+     */
     public function createErrorResponse()
     {
         return new Response(Response::ERROR_CODE, Response::ERROR_MESSAGE);
     }
 
-    private function isRouteValid(Request $request, Route $route)
+    /**
+     * @return Response
+     */
+    public function createNotFoundResponse()
     {
-        if ($request->getAction() !== $route->getAction()) {
-            return false;
-        }
-
-        $requestParts = explode('/', $request->getURI());
-        $routeParts = explode('/', $route->getURI());
-
-        if (count($requestParts) !== count($routeParts)) {
-            return false;
-        }
-
-        foreach ($routeParts as $key=>$part) {
-            if (!(preg_match('/{(\w+)}/', $part)) // Not capture group
-            && $requestParts[$key] !== $part) {
-                return false;
-            }
-        }
-
-        return true;
+        return new Response(Response::NOT_FOUND_CODE, Response::NOT_FOUND_MESSAGE);
     }
 
-    private function createResponse()
-    {
-        $controllerObject = $this->matchingRoute->getControllerObject();
-        $handlingMethod = $this->matchingRoute->getMethodName();
-
-        try {
-            return new Response(
-                Response::SUCCESS_CODE, $controllerObject->{$handlingMethod}()
-            );
-        } catch (Exception $e) {
-            return $this->createErrorResponse();
-        }
-    }
-
+    /**
+     * @return Response
+     */
     public function createFromRequest()
     {
         $request = $this->request;
@@ -112,14 +104,54 @@ class ResponseFactory
         return $response;
     }
 
+    /**
+     * @param Route $route
+     * @return $this
+     */
     private function setMatchingRoute(Route $route)
     {
         $this->matchingRoute = $route;
         return $this;
     }
 
-    public function createNotFoundResponse()
+    /**
+     * @param Request $request
+     * @param Route $route
+     * @return bool
+     */
+    private function isRouteValid(Request $request, Route $route)
     {
-        return new Response(Response::NOT_FOUND_CODE, Response::NOT_FOUND_MESSAGE);
+        $requestParts = explode('/', $request->getURI());
+        $routeParts = explode('/', $route->getURI());
+
+        if (count($requestParts) !== count($routeParts)) {
+            return false;
+        }
+
+        foreach ($routeParts as $key=>$part) {
+            if (!(preg_match('/{(\w+)}/', $part)) // Not capture group
+                && $requestParts[$key] !== $part) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @return Response
+     */
+    private function createResponse()
+    {
+        $controllerObject = $this->matchingRoute->getControllerObject();
+        $handlingMethod = $this->matchingRoute->getMethodName();
+
+        try {
+            return new Response(
+                Response::SUCCESS_CODE, $controllerObject->{$handlingMethod}()
+            );
+        } catch (Exception $e) {
+            return $this->createErrorResponse();
+        }
     }
 }
