@@ -25,16 +25,15 @@ class Route
     private $handlerMethodName;
 
     /**
-     * @param string $uri
-     * @param string $handler
+     * @param array $options
      */
-    public function __construct($uri, $handler, $options)
+    public function __construct($options)
     {
-        $this->uri = $uri;
-        $this->handler = $handler;
-        $this->action = $options['action'] ?: "GET";
-        $this->handlerClassName = explode('::', $handler)[0];
-        $this->handlerMethodName = explode('::', $handler)[1];
+        $this->uri = $options['route'];
+        $this->handler = $options['handler'];
+        $this->action = $options['action'] ?: 'GET';
+        $this->handlerClassName = explode('::', $this->handler)[0];
+        $this->handlerMethodName = explode('::', $this->handler)[1];
     }
 
     /**

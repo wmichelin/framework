@@ -38,26 +38,26 @@ class Router
     private function registerRoutes()
     {
         $this->routes = new RouteCollection([
-            new Route('{foo}/{bar}', 'App\Controllers\TestController::fooBar',
-                [
-                    'action' => 'GET'
-                ]
-            ),
-            new Route('test', 'App\Controllers\TestController::test',
-                [
-                    'action' => 'GET'
-                ]
-            ),
-            new Route('test/world', 'App\Controllers\TestController::testWorld',
-                [
-                    'action' => 'GET'
-                ]
-            ),
-            new Route('', 'App\Controllers\TestController::index',
-                [
-                    'action' => 'GET'
-                ]
-            )
+            new Route([
+                'route'   => '{foo}/{bar}',
+                'handler' => 'App\Controllers\TestController::fooBar',
+                'action'  => 'GET'
+            ]),
+            new Route([
+                'route'   => 'test',
+                'handler' => 'App\Controllers\TestController::test',
+                'action'  => 'GET'
+            ]),
+            new Route([
+                'route'   => 'test/world',
+                'handler' => 'App\Controllers\TestController::testWorld',
+                'action'  => 'GET'
+            ]),
+            new Route([
+                'route'   => '',
+                'handler' => 'App\Controllers\TestController::index',
+                'action'  => 'GET'
+            ])
         ]);
 
         return $this;
