@@ -17,4 +17,9 @@ class Request
     {
         return $this->uri;
     }
+
+    public function getAction()
+    {
+        return $this->action;
+    }
 }

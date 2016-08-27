@@ -9,10 +9,11 @@ class Route
     private $handlerClassName;
     private $handlerMethodName;
 
-    public function __construct($uri, $handler)
+    public function __construct($uri, $handler, $options)
     {
         $this->uri = $uri;
         $this->handler = $handler;
+        $this->action = $options['action'] ?: "GET";
         $this->handlerClassName = explode('::', $handler)[0];
         $this->handlerMethodName = explode('::', $handler)[1];
     }
@@ -34,6 +35,10 @@ class Route
         return $this->uri;
     }
 
+    public function getAction()
+    {
+        return $this->action;
+    }
 
     public function getControllerObject()
     {

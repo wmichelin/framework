@@ -27,6 +27,10 @@ class ResponseFactory
 
     private function isRouteValid(Request $request, Route $route)
     {
+        if ($request->getAction() !== $route->getAction()) {
+            return false;
+        }
+
         $requestParts = explode('/', $request->getURI());
         $routeParts = explode('/', $route->getURI());
 
@@ -65,7 +69,8 @@ class ResponseFactory
 
 
         foreach ($routes as $route) { // go for direct matches
-            if ($route->getURI() === $request->getURI()) {
+            if (($route->getURI() === $request->getURI())
+            && (($route->getAction() === $request->getAction()))) {
                 return $this->setMatchingRoute($route)
                     ->createResponse();
             }
