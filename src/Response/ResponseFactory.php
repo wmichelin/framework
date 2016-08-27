@@ -124,6 +124,10 @@ class ResponseFactory
         $requestParts = explode('/', $request->getURI());
         $routeParts = explode('/', $route->getURI());
 
+        if ($request->getAction() !== $route->getAction()) {
+            return false;
+        }
+
         if (count($requestParts) !== count($routeParts)) {
             return false;
         }
