@@ -25,13 +25,11 @@ class Response
     }
 
     /**
-     * @return Response
+     * @return string
      */
     public function respond()
     {
         http_response_code($this->responseCode);
-        echo $this->content;
-
-        return $this;
+        return $this->content;
     }
 }
