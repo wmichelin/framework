@@ -7,6 +7,11 @@
         "mustache/mustache": "^2.11",
         "phpunit/phpunit": "^5.5"
     },
+    "scripts": {
+        "post-install-cmd": [
+            "./vendor/bin/phpunit"
+        ]
+    },
     "minimum-stability": "dev",
     "autoload": {
         "classmap": [
