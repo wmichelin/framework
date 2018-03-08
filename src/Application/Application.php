@@ -29,10 +29,10 @@ class Application
     }
 
     /**
-     * Start the app
+     * @return string
      */
     public function start()
     {
-        $this->router->handle($this->request);
+        return $this->router->handle($this->request);
     }
 }

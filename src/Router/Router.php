@@ -48,10 +48,11 @@ class Router
 
     /**
      * @param Request $req
+     * @return string
      */
     public function handle(Request $req)
     {
-        $this->setRequest($req)
+        return $this->setRequest($req)
             ->setResponse()
             ->respond();
     }
@@ -68,12 +69,11 @@ class Router
     }
 
     /**
-     * @return Router
+     * @return string
      */
     private function respond()
     {
-        $this->response->respond();
-        return $this;
+        return $this->response->respond();
     }
 
     /**

@@ -6,5 +6,5 @@ use App\Router\Router;
 use App\Request\RequestFactory;
 use App\Application\Application;
 
-$app = new Application(new Router(), (new RequestFactory())->createFromRequest());
-$app->start();
+$app = new Application(new Router(), (new RequestFactory())->createFromRequest($_SERVER));
+echo $app->start();

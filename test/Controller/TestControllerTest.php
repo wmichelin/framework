@@ -10,6 +10,4 @@ class TestControllerTest extends TestCase
     {
         $this->assertEquals((new TestController())->helloWorld(), "hello world");
     }
-
-    
 }
